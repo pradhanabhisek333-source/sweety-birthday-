@@ -1,0 +1,589 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Archana ❤️</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Georgia, serif;
+  background: linear-gradient(135deg,#ffe0ed,#fff,#ffd6e8);
+  color: #bd3976;
+  text-align: center;
+  min-height: 100vh;
+}
+
+.page {
+  display: none;
+  min-height: 100vh;
+  padding: 35px 18px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.page.active {
+  display: flex;
+  animation: fade 0.8s ease;
+}
+
+@keyframes fade {
+  from {opacity:0; transform:translateY(15px);}
+  to {opacity:1; transform:translateY(0);}
+}
+
+h1 {font-size:32px;margin:15px;}
+h2 {margin:15px;}
+p {line-height:1.7;margin:12px;}
+
+button {
+  background:#e75491;
+  color:white;
+  border:0;
+  border-radius:30px;
+  padding:13px 25px;
+  margin:10px;
+  font-size:16px;
+  cursor:pointer;
+}
+
+button:active {transform:scale(.95);}
+
+input {
+  padding:13px;
+  border:2px solid #ed9cbe;
+  border-radius:25px;
+  text-align:center;
+  font-size:18px;
+  width:220px;
+  margin:15px;
+}
+
+.card {
+  background:#ffffffdc;
+  padding:25px;
+  border-radius:25px;
+  width:100%;
+  max-width:420px;
+  box-shadow:0 5px 20px #c75b8c30;
+}
+
+.photo {
+  width:250px;
+  height:280px;
+  object-fit:cover;
+  border:7px solid white;
+  border-radius:22px;
+  box-shadow:0 5px 20px #bd548055;
+}
+
+.cake {
+  font-size:100px;
+  margin:20px;
+  animation:bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+  50% {transform:translateY(-10px);}
+}
+
+.options button {
+  display:block;
+  width:90%;
+  max-width:300px;
+  margin:10px auto;
+  background:white;
+  color:#d13c7b;
+  border:2px solid #f4b2cc;
+}
+
+.gallery {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+  max-width:430px;
+  width:100%;
+  margin:20px auto;
+}
+
+.gallery img {
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  border:5px solid white;
+  border-radius:15px;
+}
+
+.gallery img:last-child {
+  grid-column:span 2;
+}
+
+.letter {
+  background:white;
+  padding:25px;
+  border-radius:20px;
+  max-width:420px;
+  width:100%;
+  text-align:left;
+  line-height:1.9;
+}
+
+.heart {
+  position:fixed;
+  top:-30px;
+  animation:fall 5s linear forwards;
+  pointer-events:none;
+}
+
+@keyframes fall {
+  to {transform:translateY(110vh) rotate(360deg);}
+}
+
+#message {min-height:25px;}
+</style>
+</head>
+
+<body>
+
+<audio id="music" loop>
+  <source src="music/birthday.mp3" type="audio/mpeg">
+</audio>
+
+<!-- 1. PASSWORD PAGE -->
+
+<section class="page active" id="p1">
+
+<h1>Hey Archana! 💗</h1>
+
+<img src="photos/archana1.jpg" class="photo"
+alt="Archana">
+
+<h2>A Little Surprise For You 🎀</h2>
+
+<p>Someone has prepared something special for you...</p>
+
+<div class="card">
+
+<h2>🔐 Secret Entrance</h2>
+<p>Enter your secret password</p>
+
+<input type="password" id="password"
+placeholder="Enter password">
+
+<br>
+
+<button onclick="unlock()">Unlock ❤️</button>
+
+<p id="message"></p>
+
+</div>
+</section>
+
+
+<!-- 2. WELCOME PAGE -->
+
+<section class="page" id="p2">
+
+<h1>Yayyy! 🥳</h1>
+
+<div style="font-size:85px">🎁💗🎀</div>
+
+<h2>Happy Birthday, Archana!</h2>
+
+<p>Today is not an ordinary day.</p>
+<p>Today is all about YOU! 🥹</p>
+
+<button onclick="showPage(3)">Let's Start 💕</button>
+
+</section>
+
+
+<!-- 3. CAKE PAGE -->
+
+<section class="page" id="p3">
+
+<h1>Birthday Time! 🎂</h1>
+
+<p>Close your eyes and make a wish!</p>
+
+<div class="cake" id="cake">🎂</div>
+
+<h2 id="candles">🕯️ 🕯️ 🕯️</h2>
+
+<p>Take a deep breath...</p>
+
+<button onclick="blow()">🌬️ Blow Candles</button>
+
+<p id="cakeMessage"></p>
+
+<button id="cakeNext" hidden
+onclick="showPage(4)">Next Surprise 💗</button>
+
+</section>
+
+
+<!-- 4. QUIZ PAGE -->
+
+<section class="page" id="p4">
+
+<h1>Let's Play! 😂</h1>
+
+<p>Five funny questions for you!</p>
+
+<div class="card">
+
+<h2 id="question"></h2>
+
+<div class="options" id="options"></div>
+
+<p id="answerMessage"></p>
+
+<p id="progress">1 / 5</p>
+
+</div>
+
+<button id="quizNext" hidden
+onclick="showPage(5)">See Memories 📸</button>
+
+</section>
+
+
+<!-- 5. PHOTO GALLERY -->
+
+<section class="page" id="p5">
+
+<h1>Beautiful Memories 📸</h1>
+
+<p>Five little pieces of happiness...</p>
+
+<div class="gallery">
+
+<img src="photos/archana1.jpg" alt="Memory 1">
+<img src="photos/archana2.jpg" alt="Memory 2">
+<img src="photos/archana3.jpg" alt="Memory 3">
+<img src="photos/archana4.jpg" alt="Memory 4">
+<img src="photos/archana5.jpg" alt="Memory 5">
+
+</div>
+
+<p>Every picture has its own little story. 💗</p>
+
+<button onclick="showPage(6)">Next Surprise 🎵</button>
+
+</section>
+
+
+<!-- 6. MUSIC PAGE -->
+
+<section class="page" id="p6">
+
+<h1>A Song For You 🎶</h1>
+
+<div style="font-size:90px">🎧💗</div>
+
+<h2>Just Listen & Smile</h2>
+
+<p>Some feelings are difficult to explain,</p>
+<p>but music can say them beautifully.</p>
+
+<button onclick="playMusic()">▶ Play Music</button>
+
+<button onclick="pauseMusic()">⏸ Pause Music</button>
+
+<button onclick="showPage(7)">Open Your Letter 💌</button>
+
+</section>
+
+
+<!-- 7. LETTER PAGE -->
+
+<section class="page" id="p7">
+
+<h1>A Letter For You 💌</h1>
+
+<div style="font-size:85px">💌</div>
+
+<p>There is something I want to tell you...</p>
+
+<button onclick="openLetter()">Open Your Letter ❤️</button>
+
+<div class="letter" id="letter" hidden>
+
+<h2>Dear Archana, 💗</h2>
+
+<p>
+First of all, a very happy birthday to you! 🥳
+</p>
+
+<p>
+I hope your life is always filled with happiness,
+beautiful moments, endless smiles and wonderful memories.
+</p>
+
+<p>
+You deserve all the happiness in the world.
+Never stop smiling, because your smile makes
+everything a little more beautiful.
+</p>
+
+<p>
+Maybe I cannot give you the whole world,
+but I genuinely wish the world gives you
+everything your heart desires.
+</p>
+
+<p>
+Stay happy, stay special and keep shining.
+</p>
+
+<h3>Once again, Happy Birthday, Archana! 🎂</h3>
+
+<p style="text-align:right">With lots of wishes ❤️</p>
+
+</div>
+
+<button onclick="showPage(8)">Final Surprise ✨</button>
+
+</section>
+
+
+<!-- 8. FINAL PAGE -->
+
+<section class="page" id="p8">
+
+<div style="font-size:100px">🎉💗🎂</div>
+
+<h1>Happy Birthday Again!</h1>
+
+<h2>Archana ❤️</h2>
+
+<p>
+This little website may end here,
+but I hope your happiness never ends.
+</p>
+
+<p>Keep smiling! 🌸</p>
+
+<h2>Made With ❤️</h2>
+
+<button onclick="location.reload()">Replay Surprise 🔄</button>
+
+</section>
+
+
+<script>
+
+// PAGE NAVIGATION
+
+function showPage(number) {
+
+document.querySelectorAll(".page").forEach(page => {
+page.classList.remove("active");
+});
+
+document.getElementById("p"+number).classList.add("active");
+
+window.scrollTo(0,0);
+
+}
+
+
+// PASSWORD
+
+function unlock() {
+
+let pass = document.getElementById("password").value;
+
+if(pass === "1234") {
+
+document.getElementById("message").innerHTML =
+"Correct Password! Welcome Archana 💗";
+
+setTimeout(() => showPage(2),1000);
+
+} else {
+
+document.getElementById("message").innerHTML =
+"Oops! Incorrect password. Please try again! 💕";
+
+document.getElementById("password").value = "";
+
+}
+
+}
+
+
+// CAKE
+
+function blow() {
+
+document.getElementById("candles").innerHTML = "💨";
+
+document.getElementById("cake").innerHTML = "🎂✨";
+
+document.getElementById("cakeMessage").innerHTML =
+"Yayyy! Candles are blown! Make your wish! ❤️";
+
+document.getElementById("cakeNext").hidden = false;
+
+}
+
+
+// QUESTIONS
+
+const questions = [
+
+{
+q:"Who is the queen today? 👑",
+a:["Archana","My neighbour","My teacher"],
+m:"Obviously YOU! 😂❤️"
+},
+
+{
+q:"What is the most powerful thing about you?",
+a:["Your smile","Your anger","Your sleeping"],
+m:"Your smile wins! 😁"
+},
+
+{
+q:"If you get unlimited money, what will you buy?",
+a:["Chocolate 🍫","A big house 🏠","Everything! 😂"],
+m:"Shopping queen detected! 🛍️"
+},
+
+{
+q:"What do you love most?",
+a:["Food 🍕","Sleep 😴","Both!"],
+m:"Food and sleep are unbeatable! 😂"
+},
+
+{
+q:"What should you do every day?",
+a:["Study","Smile","Eat and sleep"],
+m:"Keep smiling, birthday girl! 💗"
+}
+
+];
+
+let current = 0;
+
+function showQuestion() {
+
+let q = questions[current];
+
+document.getElementById("question").innerHTML = q.q;
+
+document.getElementById("progress").innerHTML =
+(current+1)+" / 5";
+
+document.getElementById("answerMessage").innerHTML = "";
+
+let options = document.getElementById("options");
+
+options.innerHTML = "";
+
+q.a.forEach(answer => {
+
+let btn = document.createElement("button");
+
+btn.innerHTML = answer;
+
+btn.onclick = function() {
+
+document.getElementById("answerMessage").innerHTML = q.m;
+
+options.querySelectorAll("button").forEach(b => {
+b.disabled = true;
+});
+
+if(current === 4) {
+
+document.getElementById("quizNext").hidden = false;
+
+} else {
+
+setTimeout(() => {
+current++;
+showQuestion();
+},1500);
+
+}
+
+};
+
+options.appendChild(btn);
+
+});
+
+}
+
+showQuestion();
+
+
+// MUSIC
+
+function playMusic() {
+
+let audio = document.getElementById("music");
+
+audio.play().catch(() => {
+alert("Please add your birthday.mp3 file in the music folder.");
+});
+
+}
+
+function pauseMusic() {
+
+document.getElementById("music").pause();
+
+}
+
+
+// LETTER
+
+function openLetter() {
+
+document.getElementById("letter").hidden = false;
+
+}
+
+
+// FALLING HEARTS
+
+function createHeart() {
+
+let heart = document.createElement("div");
+
+heart.className = "heart";
+
+heart.innerHTML = ["💗","💕","🌸","✨"]
+[Math.floor(Math.random()*4)];
+
+heart.style.left = Math.random()*100+"vw";
+
+heart.style.animationDuration =
+(3+Math.random()*4)+"s";
+
+heart.style.fontSize =
+(15+Math.random()*20)+"px";
+
+document.body.appendChild(heart);
+
+setTimeout(() => heart.remove(),7000);
+
+}
+
+setInterval(createHeart,500);
+
+</script>
+
+</body>
+</html>
