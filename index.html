@@ -274,36 +274,17 @@ onclick="showPage(5)">See Moon 📸</button>
 
 </div>
 
-<p>Every picture has its own little story. 💗</p>
 
-<button onclick="showPage(6)">play music </button>
 
-</section>
-<!-- 6. MUSIC PAGE -->
 
-<section class="page" id="p6">
+<button onclick="showPage(6)">Open Your Letter 💌</button>
 
-<h1>A Song For You 🎶</h1>
-
-<div style="font-size:90px">🎧💗</div>
-
-<h2>Just Listen & Smile</h2>
-
-<p>Some feelings are difficult to explain,</p>
-<p>but music can say them beautifully.</p>
-
-<button onclick="playMusic()">▶ Play Music</button>
-
-<button onclick="pauseMusic()">⏸ Pause Music</button>
-
-<button onclick="showPage(7)">Open Your Letter 💌</button>
-
-</section>
+</section> -->
 
 
 
 
-<!-- 7. LETTER PAGE -->
+<!-- 6. LETTER PAGE -->
 
 <section class="page" id="p7">
 
@@ -350,12 +331,12 @@ Stay happy, stay special and keep shining.
 
 </div>
 
-<button onclick="showPage(8)">Final Surprise ✨</button>
+<button onclick="showPage(7)">Final Surprise ✨</button>
 
 </section>
 
 
-<!-- 8. FINAL PAGE -->
+<!-- 7. FINAL PAGE -->
 
 <section class="page" id="p8">
 
@@ -524,7 +505,7 @@ btn.onclick = function() {
     setTimeout(() => {
       current++;
       showQuestion();
-    }, 5000);
+    }, 4000);
   }
 
 };
@@ -539,23 +520,6 @@ options.appendChild(btn);
 showQuestion();
 
 
-// MUSIC
-
-function playMusic() {
-
-let audio = document.getElementById("music");
-
-audio.play().catch(() => {
-alert("Please add your birthday.mp3 file in the music folder.");
-});
-
-}
-
-function pauseMusic() {
-
-document.getElementById("music").pause();
-
-}
 
 
 // LETTER
