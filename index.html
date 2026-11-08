@@ -499,7 +499,7 @@ btn.innerHTML = answer;
 
 btn.onclick = function() {
 
-document.getElementById("answerMessage").innerHTML =array.isarray(q.m)? q.m[index]: q.m;
+document.getElementById("answerMessage").innerHTML =current===0? q.m[index]: q.m;
 
 options.querySelectorAll("button").forEach(b => {
 b.disabled = true;
