@@ -234,9 +234,9 @@ onclick="showPage(4)">Next Surprise 💗</button>
 
 <section class="page" id="p4">
 
-<h1>Let's Play! 😂</h1>
+<h1>Let's start</h1>
 
-<p>Five funny questions for you!</p>
+<p>Five little qestion for you!</p>
 
 <div class="card">
 
@@ -442,9 +442,10 @@ document.getElementById("cakeNext").hidden = false;
 const questions = [
 
 {
-q:"Who is the queen today? 👑",
-a:["Archana","My neighbour","My teacher"],
-m:"Obviously YOU! 😂❤️"
+q:"do you see angel? 👑",
+a:["yes","no"],
+m:["it's you❤️",
+  "please look in the mirror,you are angel!"]
 },
 
 {
@@ -498,7 +499,7 @@ btn.innerHTML = answer;
 
 btn.onclick = function() {
 
-document.getElementById("answerMessage").innerHTML = q.m;
+document.getElementById("answerMessage").innerHTML =array.isarray(q.m)? q.m[index]: q.m;
 
 options.querySelectorAll("button").forEach(b => {
 b.disabled = true;
