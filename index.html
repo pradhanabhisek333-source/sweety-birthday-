@@ -496,29 +496,39 @@ q.a.forEach((answer,index)=> {
 let btn = document.createElement("button");
 
 btn.innerHTML = answer;
-
 btn.onclick = function() {
 
-document.getElementById("answerMessage").innerHTML =current===0? q.m[index]: q.m;
+  let msg = "";
 
-options.querySelectorAll("button").forEach(b => {
-b.disabled = true;
-});
+  if (current === 0) {
+    if (index === 0) {
+      msg = "it's you ❤️🥰";
+    } else {
+      msg = "Please look in the mirror. 🪞 You are the angel! 😇❤️";
+    }
+  } else {
+    msg = q.m;
+  }
 
-if(current === 4) {
+  let answerBox = document.getElementById("answerMessage");
+  answerBox.innerHTML = msg;
+  answerBox.style.display = "block";
 
-document.getElementById("quizNext").hidden = false;
+  options.querySelectorAll("button").forEach(b => {
+    b.disabled = true;
+  });
 
-} else {
-
-setTimeout(() => {
-current++;
-showQuestion();
-},5000);
-
-}
+  if (current === 4) {
+    document.getElementById("quizNext").hidden = false;
+  } else {
+    setTimeout(() => {
+      current++;
+      showQuestion();
+    }, 5000);
+  }
 
 };
+
 
 options.appendChild(btn);
 
